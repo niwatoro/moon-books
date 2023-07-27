@@ -1,11 +1,16 @@
 import { json, type LoaderFunction } from "@remix-run/cloudflare";
 import { type Work } from "~/routes/types/work";
-import { useLoaderData } from "@remix-run/react";
+import {Link, useLoaderData} from "@remix-run/react";
 import { PageBase } from "~/routes/components/page-base";
 
 interface Env {
   DB: D1Database;
 }
+
+type LoaderResponse = {
+  work: Work;
+  text: string;
+};
 
 export const loader: LoaderFunction = async ({ context, params }) => {
   const env = context.env as Env;
@@ -15,11 +20,24 @@ export const loader: LoaderFunction = async ({ context, params }) => {
     `select * from works where id = ${workId}`,
   ).first<Work>();
 
-  return json({ work });
+  const text = await (await fetch(work.file)).text();
+
+  return json({ work, text });
 };
 
 export default function _index() {
-  const { work } = useLoaderData<typeof loader>();
+  const { work, text }: LoaderResponse = useLoaderData<typeof loader>();
 
-  return <PageBase>{work.title}</PageBase>;
+  return (
+    <PageBase>
+      <div className={"text-blue-500 underline hover:opacity-50 transition-opacity"}>
+        <Link to={"/"}>&lt; 回首頁</Link>
+      </div>
+      <div className={"flex flex-col gap-y-2"}>
+      <div className={"font-bold text-2xl"}>{work.title}</div>
+      <div>{work.author} 著</div>
+      </div>
+      <div className={"whitespace-pre-wrap"}>{text}</div>
+    </PageBase>
+  );
 }
