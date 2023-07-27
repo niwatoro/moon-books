@@ -1,0 +1,4 @@
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "bunko"
+database_id = "e52812b9-0458-4148-9be0-316e683320b4"
