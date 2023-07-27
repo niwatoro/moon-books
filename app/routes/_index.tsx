@@ -3,7 +3,7 @@ import { Logo } from "~/routes/components/common/logo";
 
 export const meta: V2_MetaFunction = () => {
   return [
-    { title: "Moon Books" },
+    { title: "望月文庫 | Moon Books" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
