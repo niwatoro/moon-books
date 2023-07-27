@@ -4,7 +4,7 @@ import { Intro } from "~/routes/intro";
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/cloudflare";
 import { Work } from "~/routes/types/work";
-import {PageBase} from "~/routes/components/page-base";
+import { PageBase } from "~/routes/components/page-base";
 
 interface Env {
   DB: D1Database;
@@ -32,28 +32,28 @@ export default function _index() {
 
   return (
     <PageBase>
-        <div className={"flex justify-center"}>
-          <Logo />
+      <div className={"flex justify-center"}>
+        <Logo />
+      </div>
+      <Intro />
+      {works && (
+        <div>
+          {works.map((work: Work) => {
+            return (
+              <Link
+                key={work.id}
+                to={`/works/${work.id}`}
+                className={
+                  "rounded hover:opacity-50 transition-opacity shadow-lg flex flex-col gap-y-1 border border-zinc-200 p-4"
+                }
+              >
+                <div className={"font-bold text-2xl"}>{work.title}</div>
+                <div>{work.author}</div>
+              </Link>
+            );
+          })}
         </div>
-        <Intro />
-        {works && (
-          <div>
-            {works.map((work: Work) => {
-              return (
-                <Link
-                  key={work.id}
-                  to={`/works/${work.id}`}
-                  className={
-                    "rounded hover:opacity-50 transition-opacity shadow-lg flex flex-col gap-y-1 border border-zinc-200 p-4"
-                  }
-                >
-                  <div className={"font-bold text-2xl"}>{work.title}</div>
-                  <div>{work.author}</div>
-                </Link>
-              );
-            })}
-          </div>
-        )}
+      )}
     </PageBase>
   );
 }
