@@ -3,8 +3,7 @@ import { Logo } from "~/routes/components/logo";
 import { Intro } from "~/routes/intro";
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/cloudflare";
-import { type Work } from "~/routes/types/work";
-import { PageBase } from "~/routes/components/page-base";
+import { Work } from "~/routes/types/work";
 
 interface Env {
   DB: D1Database;
@@ -31,29 +30,31 @@ export default function _index() {
   const { works } = useLoaderData<typeof loader>();
 
   return (
-    <PageBase>
-      <div className={"flex justify-center"}>
-        <Logo />
-      </div>
-      <Intro />
-      {works && (
-        <div>
-          {works.map((work: Work) => {
-            return (
-              <Link
-                key={work.id}
-                to={`/works/${work.id}`}
-                className={
-                  "rounded hover:opacity-50 transition-opacity shadow-lg flex flex-col gap-y-1 border border-zinc-200 p-4"
-                }
-              >
-                <div className={"font-bold text-2xl"}>{work.title}</div>
-                <div>{work.author}</div>
-              </Link>
-            );
-          })}
+    <div className={"flex justify-center"}>
+      <div className={"max-w-lg flex flex-col gap-y-8 w-screen py-10"}>
+        <div className={"flex justify-center"}>
+          <Logo />
         </div>
-      )}
-    </PageBase>
+        <Intro />
+        {works && (
+          <div>
+            {works.map((work: Work) => {
+              return (
+                <Link
+                  key={work.id}
+                  to={`/works/${work.id}`}
+                  className={
+                    "rounded hover:opacity-50 transition-opacity shadow-lg flex flex-col gap-y-1 border border-zinc-200 p-4"
+                  }
+                >
+                  <div className={"font-bold text-2xl"}>{work.title}</div>
+                  <div>{work.author}</div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
