@@ -9,5 +9,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("prettier-plugin-organize-imports"),
+    require("prettier-plugin-tailwindcss"),
+  ],
 } satisfies Config;
