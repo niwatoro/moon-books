@@ -13,12 +13,12 @@ import stylesheet from "~/tailwind.css";
 export const links: LinksFunction = () => [
   {
     rel: "stylesheet",
-    href: stylesheet
+    href: stylesheet,
   },
   {
     rel: "icon",
     href: "/favicon.ico",
-  }
+  },
 ];
 
 export default function App() {
