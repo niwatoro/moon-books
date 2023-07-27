@@ -2,40 +2,17 @@ import type { V2_MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: V2_MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Moon Books" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className={"flex justify-center"}>
+      <div className={"max-w-lg w-screen py-10"}>
+        <div className={"flex justify-center"}>望月文庫</div>
+      </div>
     </div>
   );
 }

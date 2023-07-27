@@ -21,5 +21,5 @@ export default {
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   serverPlatform: "neutral",
-  tailwind: true
+  tailwind: true,
 };
