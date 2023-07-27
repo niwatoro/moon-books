@@ -4,6 +4,7 @@ import { Intro } from "~/routes/intro";
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/cloudflare";
 import { Work } from "~/routes/types/work";
+import {PageBase} from "~/routes/components/page-base";
 
 interface Env {
   DB: D1Database;
@@ -30,8 +31,7 @@ export default function _index() {
   const { works } = useLoaderData<typeof loader>();
 
   return (
-    <div className={"flex justify-center"}>
-      <div className={"max-w-lg flex flex-col gap-y-8 w-screen py-10"}>
+    <PageBase>
         <div className={"flex justify-center"}>
           <Logo />
         </div>
@@ -54,7 +54,6 @@ export default function _index() {
             })}
           </div>
         )}
-      </div>
-    </div>
+    </PageBase>
   );
 }
