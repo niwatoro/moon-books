@@ -40,6 +40,7 @@ export default function _index() {
       <div className={"flex flex-col gap-y-2"}>
         <div className={"font-bold text-2xl"}>{work.title}</div>
         <div>{work.author} 著</div>
+        <div>油雞 譯</div>
       </div>
       <div className={"whitespace-pre-wrap"}>{text}</div>
     </PageBase>

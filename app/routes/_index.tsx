@@ -23,10 +23,6 @@ export const meta: V2_MetaFunction = () => {
 export const loader: LoaderFunction = async ({ context, params }) => {
   const env = context.env as Env;
 
-  if (!env.DB) {
-    throw new Error("Missing database");
-  }
-
   const { results } = await env.DB.prepare("select * from works").all<Work>();
   return json({ works: results ?? [] });
 };
