@@ -3,7 +3,7 @@ import { Logo } from "~/routes/components/logo";
 import { Intro } from "~/routes/intro";
 import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/cloudflare";
-import { Work } from "~/routes/types/work";
+import { type Work } from "~/routes/types/work";
 import { PageBase } from "~/routes/components/page-base";
 
 interface Env {
@@ -22,6 +22,10 @@ export const meta: V2_MetaFunction = () => {
 
 export const loader: LoaderFunction = async ({ context, params }) => {
   const env = context.env as Env;
+
+  if (!env.DB) {
+    throw new Error("Missing database");
+  }
 
   const { results } = await env.DB.prepare("select * from works").all<Work>();
   return json({ works: results ?? [] });
