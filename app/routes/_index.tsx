@@ -37,14 +37,14 @@ export default function _index() {
       </div>
       <Intro />
       {works && (
-        <div>
+        <div className={"flex flex-col gap-y-2"}>
           {works.map((work: Work) => {
             return (
               <Link
                 key={work.id}
                 to={`/works/${work.id}`}
                 className={
-                  "rounded hover:opacity-50 transition-opacity shadow-lg flex flex-col gap-y-1 border border-zinc-200 p-4"
+                  "rounded hover:opacity-50 transition-opacity drop-shadow-lg bg-white flex flex-col gap-y-1 border border-zinc-200 p-4"
                 }
               >
                 <div className={"font-bold text-2xl"}>{work.title}</div>
